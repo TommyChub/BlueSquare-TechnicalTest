@@ -1,0 +1,157 @@
+swagger: "2.0"
+info:
+  description: "This is a sample API for our users to update our DB written using Swagger. You can find out more about     Swagger at [http://swagger.io](http://swagger.io).      For this sample, you don't need to worry about authentication and authorization."
+  version: "1.0.0"
+  title: "Blue Square Job Updator API"
+  contact:
+    email: "zdowsett@bluesquare.uk.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api.bluesquare.uk.com"
+basePath: "/v1"
+tags:
+- name: "Jobs"
+  description: "Collect and update job information"
+schemes:
+- "https"
+- "http"
+paths:
+  /jobs:
+    get:
+      tags:
+      - "Jobs"
+      summary: "Fetch all jobs"
+      description: "Fetch all jobs currently sored in the system"
+      operationId: "getJobs"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Job"
+  /job/{jobId}:
+    get:
+      tags:
+      - "Jobs"
+      summary: "Find job by ID"
+      description: "Returns a single job"
+      operationId: "getJobById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "jobId"
+        in: "path"
+        description: "ID of job to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Job"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Job not found"
+    post:
+      tags:
+      - "Jobs"
+      summary: "Updates a job"
+      description: "updates and returns the new job data"
+      operationId: "updateJob"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "jobId"
+        in: "path"
+        description: "ID of job that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "body"
+        in: "body"
+        description: "job update object"
+        required: true
+        schema:
+          $ref: "#/definitions/JobUpdate"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Job"
+        "400":
+          description: "Invalid Job update object"
+        "404":
+          description: "Job not found"
+definitions:
+  Job:
+    type: "object"
+    properties:
+      job_id:
+        type: "integer"
+        format: "int64"
+      job_date:
+        type: "string"
+        format: "date"
+      job_type:
+        type: "string"
+      job_status:
+        type: "string"
+        enum:
+        - "NEW"
+        - "OPENED"
+        - "JOB COMPLETED"
+        - "CLOSED"
+      customer:
+        type: "object"
+        properties:
+          client_firstname:
+            type: "string"
+          client_lastname:
+            type: "string"
+          client_postcode:
+            type: "string"
+          client_mobile:
+            type: "string"
+      product:
+        type: "object"
+        properties: 
+          product_sku:
+            type: "string"
+          product_type:
+            type: "string"
+      updates:
+        type: "array"
+        items:
+          type: "object"
+          properties: 
+            timestamp:
+              type: "string"
+              format: "timestamp"
+            status:
+              type: "string"
+              enum:
+              - "NEW"
+              - "OPENED"
+              - "JOB COMPLETED"
+              - "CLOSED"
+  JobUpdate:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        enum:
+        - "NEW"
+        - "OPENED"
+        - "JOB COMPLETED"
+        - "CLOSED"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
