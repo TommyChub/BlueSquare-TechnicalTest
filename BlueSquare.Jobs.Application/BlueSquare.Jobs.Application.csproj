@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlueSquare.Domain\BlueSquare.Domain.csproj" />
+    <ProjectReference Include="..\BlueSquare.Infrastructure\BlueSquare.Infrastructure.csproj" />
+    <ProjectReference Include="..\BlueSquare.Jobs.Api\BlueSquare.Jobs.Api.csproj" />
+  </ItemGroup>
+
+</Project>
