@@ -10,6 +10,7 @@ namespace BlueSquare.Jobs.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class JobController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -41,8 +42,7 @@ namespace BlueSquare.Jobs.Api.Controllers
             return Ok();
         }
 
-        // Primarily used for testing
-        [HttpPost("Create")]
+        [HttpPost("/Create")]
         public async Task<ActionResult> CreateJob(JobDto jobDto)
         {
             await _mediator.Send(new CreateJobCommand { JobDto = jobDto });

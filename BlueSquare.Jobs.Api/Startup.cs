@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Conventions;
 
 namespace BlueSquare.Jobs.Api
 {
@@ -37,6 +39,11 @@ namespace BlueSquare.Jobs.Api
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IJobRepository), typeof(JobRepository));
             services.AddScoped<IMongoJobDbContext, MongoJobDbContext>();
+
+            ConventionRegistry.Register("EnumStringConvention", new ConventionPack
+            {
+                new EnumRepresentationConvention(BsonType.String)
+            }, t => true);
 
             services.AddSwaggerGen(c =>
             {

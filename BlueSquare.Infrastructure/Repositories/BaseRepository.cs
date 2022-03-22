@@ -25,7 +25,7 @@ namespace BlueSquare.Infrastructure.Repositories
 
         public async Task<TEntity> Get(string id)
         {
-            var filter = Builders<TEntity>.Filter.Eq("_id", id);
+            var filter = Builders<TEntity>.Filter.Eq("job_id", id);
             return await _dbCollection.FindAsync(filter).Result.FirstOrDefaultAsync();
         }
 

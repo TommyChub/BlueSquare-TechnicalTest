@@ -21,7 +21,6 @@ namespace BlueSquare.Jobs.Application.Handlers
             var jobDto = request.JobDto;
             var job = new Job
             {
-                Id = jobDto.Id,
                 Date = jobDto.Date,
                 Type = jobDto.Type,
                 Status = jobDto.Status,
