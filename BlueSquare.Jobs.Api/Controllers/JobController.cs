@@ -45,6 +45,12 @@ namespace BlueSquare.Jobs.Api.Controllers
         public async Task<ActionResult> UpdateJobAsync(JobDto jobDto)
         {
             var updatedJobDto = await _mediator.Send(new UpdateJobCommand { JobDto = jobDto });
+
+            if (updatedJobDto is null)
+            {
+                return NotFound();
+            }
+
             var updatedJobJson = JsonSerializer.Serialize(updatedJobDto);
 
             return Ok(updatedJobJson);
