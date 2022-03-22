@@ -27,17 +27,20 @@ namespace BlueSquare.Jobs.Api
         {
             services.AddControllers();
 
-            services.AddOptions<MongoOptions>("Mongo");
+            services.AddOptions();
+
+            services.Configure<MongoOptions>(Configuration.GetSection(MongoOptions.Position));
 
             services.AddDbContext<ClientDbContext>(opts =>
                 opts.UseInMemoryDatabase("InMem"));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IJobRepository), typeof(JobRepository));
+            services.AddScoped<IMongoJobDbContext, MongoJobDbContext>();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "JobService", Version = "v1" });
             });
 
             services.AddMediatR(typeof(GetAllJobsQuery).GetTypeInfo().Assembly);
@@ -49,7 +52,7 @@ namespace BlueSquare.Jobs.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlatformService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "JobServices v1"));
             }
 
             app.UseHttpsRedirection();

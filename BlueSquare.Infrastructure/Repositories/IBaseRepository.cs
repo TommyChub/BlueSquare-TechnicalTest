@@ -8,5 +8,6 @@ namespace BlueSquare.Infrastructure.Repositories
         TEntity Update(TEntity entity);
         Task<TEntity> Get(string id);
         Task<IEnumerable<TEntity>> GetAll();
+        Task Create(TEntity entity);
     }
 }

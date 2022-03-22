@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlueSquare.Infrastructure.Contexts;
 using MongoDB.Driver;
@@ -10,10 +11,16 @@ namespace BlueSquare.Infrastructure.Repositories
         private readonly IMongoJobDbContext _context;
         private readonly IMongoCollection<TEntity> _dbCollection;
 
+        protected BaseRepository(IMongoJobDbContext context)
+        {
+            _context = context;
+            _dbCollection = _context.GetCollection<TEntity>(typeof(TEntity).Name);
+        }
+
         public async Task<IEnumerable<TEntity>> GetAll()
         {
-            var all = await _dbCollection.FindAsync(Builders<TEntity>.Filter.Empty);
-            return await all.ToListAsync();
+            var entities = await _dbCollection.FindAsync(Builders<TEntity>.Filter.Empty);
+            return await entities.ToListAsync();
         }
 
         public async Task<TEntity> Get(string id)
@@ -26,6 +33,15 @@ namespace BlueSquare.Infrastructure.Repositories
         {
             _dbCollection.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", entity), entity);
             return entity;
+        }
+
+        public async Task Create(TEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(typeof(TEntity).Name);
+            }
+            await _dbCollection.InsertOneAsync(entity);
         }
     }
 }

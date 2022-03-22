@@ -41,8 +41,15 @@ namespace BlueSquare.Jobs.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("/Create")]
+        public async Task<ActionResult> CreateJob(JobDto jobDto)
+        {
+            await _mediator.Send(new CreateJobCommand { JobDto = jobDto });
+            return Ok();
+        }
+
         [HttpPost]
-        public async Task<ActionResult> UpdateJobAsync(JobDto jobDto)
+        public async Task<ActionResult> UpdateJob(JobDto jobDto)
         {
             var updatedJobDto = await _mediator.Send(new UpdateJobCommand { JobDto = jobDto });
 
