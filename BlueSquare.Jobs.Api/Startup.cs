@@ -1,3 +1,4 @@
+using BlueSquare.Infrastructure.Options;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +20,8 @@ namespace BlueSquare.Jobs.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddOptions<MongoOptions>("Mongo");
 
             services.AddMediatR(typeof(Startup));
         }

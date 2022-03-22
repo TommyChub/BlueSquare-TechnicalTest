@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using BlueSquare.Domain.Entities;
 using BlueSquare.Domain.Enums;
 
-namespace BlueSquare.Domain.Entities
+namespace BlueSquare.Domain.Dtos
 {
-    public class Job
+    public class JobDto
     {
         public int Id { get; set; }
 

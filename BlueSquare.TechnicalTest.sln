@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueSquare.Jobs.Api", "Blue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSquare.Domain", "BlueSquare.Domain\BlueSquare.Domain.csproj", "{8693F600-7C14-4969-BAA0-BF099A588F1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSquare.Jobs.Application", "BlueSquare.Jobs.Application\BlueSquare.Jobs.Application.csproj", "{DD71BF52-6A36-4686-AF38-55A16D0B50B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSquare.Infrastructure", "BlueSquare.Infrastructure\BlueSquare.Infrastructure.csproj", "{77C171A7-CB1C-41FF-B878-EA3B533A7B13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8693F600-7C14-4969-BAA0-BF099A588F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8693F600-7C14-4969-BAA0-BF099A588F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8693F600-7C14-4969-BAA0-BF099A588F1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD71BF52-6A36-4686-AF38-55A16D0B50B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD71BF52-6A36-4686-AF38-55A16D0B50B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD71BF52-6A36-4686-AF38-55A16D0B50B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD71BF52-6A36-4686-AF38-55A16D0B50B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C171A7-CB1C-41FF-B878-EA3B533A7B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C171A7-CB1C-41FF-B878-EA3B533A7B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C171A7-CB1C-41FF-B878-EA3B533A7B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C171A7-CB1C-41FF-B878-EA3B533A7B13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
