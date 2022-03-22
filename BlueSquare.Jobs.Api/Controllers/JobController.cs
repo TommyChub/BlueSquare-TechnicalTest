@@ -41,7 +41,8 @@ namespace BlueSquare.Jobs.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("/Create")]
+        // Primarily used for testing
+        [HttpPost("Create")]
         public async Task<ActionResult> CreateJob(JobDto jobDto)
         {
             await _mediator.Send(new CreateJobCommand { JobDto = jobDto });

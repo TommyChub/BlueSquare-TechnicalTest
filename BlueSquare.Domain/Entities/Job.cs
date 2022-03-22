@@ -8,9 +8,8 @@ namespace BlueSquare.Domain.Entities
     public class Job
     {
         [BsonId]
-        [BsonRepresentation(BsonType.String)]
         [BsonElement("job_id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [BsonRequired]
         [BsonElement("job_date")]

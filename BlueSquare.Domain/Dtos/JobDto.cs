@@ -6,6 +6,8 @@ namespace BlueSquare.Domain.Dtos
 {
     public class JobDto
     {
+        public string Id { get; set; }
+
         public string Date { get; set; }
 
         public string Type { get; set; }
