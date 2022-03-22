@@ -3,6 +3,8 @@ using BlueSquare.Jobs.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using BlueSquare.Domain.Dtos;
+using BlueSquare.Jobs.Application.Commands;
 
 namespace BlueSquare.Jobs.Api.Controllers
 {
@@ -40,9 +42,12 @@ namespace BlueSquare.Jobs.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateJob()
+        public async Task<ActionResult> UpdateJobAsync(JobDto jobDto)
         {
-            return Ok();
+            var updatedJobDto = await _mediator.Send(new UpdateJobCommand { JobDto = jobDto });
+            var updatedJobJson = JsonSerializer.Serialize(updatedJobDto);
+
+            return Ok(updatedJobJson);
         }
     }
 }
