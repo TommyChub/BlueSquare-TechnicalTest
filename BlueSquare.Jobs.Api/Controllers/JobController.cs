@@ -1,5 +1,8 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using BlueSquare.Jobs.Application.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace BlueSquare.Jobs.Api.Controllers
 {
@@ -15,20 +18,24 @@ namespace BlueSquare.Jobs.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetJobs()
+        public async Task<ActionResult> GetJobs()
         {
-            return Ok();
+            var jobDtos = await _mediator.Send(new GetAllJobsQuery());
+            var jobsJson = JsonSerializer.Serialize(jobDtos);
+
+            return Ok(jobsJson);
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetJobsById(int id)
+        public async Task<ActionResult> GetJobsById(int id)
         {
-            return Ok();
-        }
+            var jobDto = await _mediator.Send(new GetJobByIdQuery { Id = id });
 
-        [HttpPost]
-        public ActionResult CreateJob()
-        {
+            if (jobDto is null)
+            {
+                return NotFound();
+            }
+
             return Ok();
         }
 

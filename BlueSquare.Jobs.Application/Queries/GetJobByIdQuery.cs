@@ -5,6 +5,6 @@ namespace BlueSquare.Jobs.Application.Queries
 {
     public class GetJobByIdQuery : IRequest<JobDto>
     {
-        public int JobId { get; set; }
+        public int Id { get; set; }
     }
 }
